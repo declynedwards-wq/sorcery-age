@@ -12,6 +12,7 @@ public class JJKEffects {
     public static DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, JujutsuKaisen.MOD_ID);
 
     public static RegistryObject<MobEffect> STUN = EFFECTS.register("stun", () -> new JJKEffect(MobEffectCategory.NEUTRAL, 0xFFFFFF));
+    public static RegistryObject<MobEffect> PARALYZED = EFFECTS.register("paralyzed", () -> new JJKEffect(MobEffectCategory.HARMFUL, 0xEBDD00));
     public static RegistryObject<MobEffect> STAGGER = EFFECTS.register("stagger", () -> new JJKEffect(MobEffectCategory.NEUTRAL, 0xFFFFF0));
     public static RegistryObject<MobEffect> DOMAINSTUN = EFFECTS.register("domainstun", () -> new JJKEffect(MobEffectCategory.NEUTRAL, 0xFFFFF0));
     public static RegistryObject<MobEffect> UNLIMITED_VOID = EFFECTS.register("unlimited_void", () -> new JJKEffect(MobEffectCategory.HARMFUL, 0x000000));

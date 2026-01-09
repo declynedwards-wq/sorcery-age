@@ -242,6 +242,9 @@
   "ability.jujutsu_kaisen.ratio_rule.enable": "Activated Ratio Rule",
   "ability.jujutsu_kaisen.ratio_rule.disable": "Deactivated Ratio Rule",
   "ability.jujutsu_kaisen.bisection": "Bisection",
+  "ability.jujutsu_kaisen.paralyzing_gaze": "Paralyzing Gaze",
+  "ability.jujutsu_kaisen.paralyzing_gaze.enable": "Activated Paralyzing Gaze",
+  "ability.jujutsu_kaisen.paralyzing_gaze.disable": "Deactivated Paralyzing Gaze",
   "ability.jujutsu_kaisen.dash": "Dash",
   "ability.jujutsu_kaisen.punch": "Strike",
   "ability.jujutsu_kaisen.blitz": "Blitz",
@@ -518,6 +521,7 @@
   "cursed_technique.jujutsu_kaisen.boogie_woogie": "Boogie Woogie",
   "cursed_technique.jujutsu_kaisen.projection_sorcery": "Projection Sorcery",
   "cursed_technique.jujutsu_kaisen.ratio": "Ratio",
+  "cursed_technique.jujutsu_kaisen.paralyzing_gaze": "Paralyzing Gaze",
   "cursed_technique.jujutsu_kaisen.mythical_beast_amber": "Mythical Beast Amber",
   "cursed_technique.jujutsu_kaisen.brain_transplant": "Brain Transplant",
 

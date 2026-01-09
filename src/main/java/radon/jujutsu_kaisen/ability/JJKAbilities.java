@@ -18,6 +18,7 @@ import radon.jujutsu_kaisen.JujutsuKaisen;
 import radon.jujutsu_kaisen.ability.mythical_beast_amber.MythicalBeastAmber;
 import radon.jujutsu_kaisen.ability.mythical_beast_amber.EMFBlast;
 import radon.jujutsu_kaisen.ability.mythical_beast_amber.ElectricBeam;
+import radon.jujutsu_kaisen.ability.paralyzing_gaze.ParalyzingGaze;
 import radon.jujutsu_kaisen.ability.shockwave.Shockwave;
 import radon.jujutsu_kaisen.ability.ai.dino_curse.BlueFire;
 import radon.jujutsu_kaisen.ability.ai.max_elephant.Water;
@@ -265,6 +266,8 @@ public class JJKAbilities {
     public static RegistryObject<Ability> COLLAPSE = ABILITIES.register("collapse", Collapse::new);
     public static RegistryObject<Ability> RATIO_RULE = ABILITIES.register("ratio_rule", RatioRule::new);
     public static RegistryObject<Ability> BISECTION = ABILITIES.register("bisection", Bisection::new);
+
+    public static RegistryObject<Ability> PARALYZING_GAZE = ABILITIES.register("paralyzing_gaze", ParalyzingGaze::new);
 
     public static String getName(Ability ability) {
         return getKey(ability).getPath();

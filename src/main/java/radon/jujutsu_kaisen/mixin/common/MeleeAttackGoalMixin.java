@@ -20,14 +20,16 @@ public class MeleeAttackGoalMixin {
     @Inject(method = "canUse", at = @At("HEAD"), cancellable = true)
     public void canUse(CallbackInfoReturnable<Boolean> cir) {
         MobEffectInstance instance = this.mob.getEffect(JJKEffects.STUN.get());
+        MobEffectInstance instance2 = this.mob.getEffect(JJKEffects.PARALYZED.get());
 
-        if (instance != null && instance.getAmplifier() > 0) cir.setReturnValue(false);
+        if ((instance != null && instance.getAmplifier() > 0) || (instance2 != null && instance2.getAmplifier() > 0)) cir.setReturnValue(false);
     }
 
     @Inject(method = "canContinueToUse", at = @At("HEAD"), cancellable = true)
     public void canContinueToUse(CallbackInfoReturnable<Boolean> cir) {
         MobEffectInstance instance = this.mob.getEffect(JJKEffects.STUN.get());
+        MobEffectInstance instance2 = this.mob.getEffect(JJKEffects.PARALYZED.get());
 
-        if (instance != null && instance.getAmplifier() > 0) cir.setReturnValue(false);
+        if ((instance != null && instance.getAmplifier() > 0) || (instance2 != null && instance2.getAmplifier() > 0)) cir.setReturnValue(false);
     }
 }

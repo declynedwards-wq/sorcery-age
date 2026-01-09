@@ -1,16 +1,21 @@
 package radon.jujutsu_kaisen.mixin.common;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import radon.jujutsu_kaisen.ability.JJKAbilities;
 import radon.jujutsu_kaisen.client.particle.ParticleColors;
 import radon.jujutsu_kaisen.client.visual.ClientVisualHandler;
+import radon.jujutsu_kaisen.effect.JJKEffects;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
@@ -33,5 +38,12 @@ public abstract class EntityMixin {
         b = Math.max(0, Math.min(255, b));
 
         cir.setReturnValue((r << 16) | (g << 8) | b);
+    }
+    @Inject(method = "move", at = @At("HEAD"), cancellable = true)
+    public void move(MoverType pType, Vec3 pPos, CallbackInfo ci) {
+        Entity entity = (Entity) (Object) this;
+        if (entity instanceof LivingEntity living && living.hasEffect(JJKEffects.PARALYZED.get())){
+            ci.cancel();
+        }
     }
 }

@@ -32,6 +32,8 @@ public enum CursedTechnique {
 
     RATIO(null, JJKAbilities.COLLAPSE.get(), JJKAbilities.RATIO_RULE.get(), JJKAbilities.BISECTION.get()),
 
+    PARALYZING_GAZE(null, JJKAbilities.PARALYZING_GAZE.get()),
+
     TEN_SHADOWS(JJKAbilities.CHIMERA_SHADOW_GARDEN.get(),
             JJKAbilities.SWITCH_MODE.get(),
             JJKAbilities.RELEASE_SHIKIGAMI.get(),
