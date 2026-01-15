@@ -8,6 +8,8 @@
   },
   "refmap": "jujutsu_kaisen.refmap.json",
   "client": [
+    "client.BufferBuilderAccessor",
+    "client.BufferSourceMixin",
     "client.ClientSuggestionProviderMixin",
     "client.EntityRenderDispatcherMixin",
     "client.GameRendererMixin",
@@ -21,9 +23,7 @@
     "client.ItemRendererMixin",
     "client.LevelRendererMixin",
     "client.LivingEntityRendererMixin",
-    "client.MinecraftMixin",
-    "client.BufferSourceMixin",
-    "client.BufferBuilderAccessor"
+    "client.MinecraftMixin"
   ],
   "mixins": [
     "common.EnchantmentHelperMixin",

@@ -28,9 +28,11 @@ import radon.jujutsu_kaisen.item.base.CursedToolItem;
 import radon.jujutsu_kaisen.sound.JJKSounds;
 import radon.jujutsu_kaisen.util.RotationUtil;
 
+import java.util.NoSuchElementException;
+
 public class ParalyzingGaze extends Ability implements Ability.IToggled {
     public static final double RANGE = 50.0D;
-    public Entity CurrentTarget = null;
+    public LivingEntity CurrentTarget = null;
 
     @Override
     public boolean isScalable(LivingEntity owner) {
@@ -53,16 +55,16 @@ public class ParalyzingGaze extends Ability implements Ability.IToggled {
     }
 
     public static boolean canParalyze(Entity target) {
-        return (target instanceof Projectile || target instanceof CursedEnergyImbuedItemProjectile || target instanceof LivingEntity);
+        return (target instanceof LivingEntity);
     }
 
-    private @Nullable Entity getTarget(LivingEntity owner) {
+    private @Nullable LivingEntity getTarget(LivingEntity owner) {
         Vec3 start = owner.getEyePosition(1.0F);
         Vec3 direction = owner.getLookAngle();
         Vec3 end = start.add(direction.scale(RANGE));
         EntityHitResult hitResult = ProjectileUtil.getEntityHitResult(owner.level(), owner, start, end, new AABB(start, end).inflate(0.5, 0.5, 0.5), e -> !e.isSpectator() && canParalyze(e));
-        if (hitResult != null) {
-            return hitResult.getEntity();
+        if (hitResult != null && hitResult.getEntity() instanceof LivingEntity living) {
+            return living;
         }
         return null;
     }
@@ -73,18 +75,20 @@ public class ParalyzingGaze extends Ability implements Ability.IToggled {
         CurrentTarget = getTarget(owner);
         if (CurrentTarget != null) {
             owner.addEffect(new MobEffectInstance(JJKEffects.STUN.get(), 1*20, 1, false, false, false));
-            if (CurrentTarget instanceof LivingEntity living){
-                living.addEffect(new MobEffectInstance(JJKEffects.PARALYZED.get(), 1*20, 1, false, false, false));
-            }
+            CurrentTarget.addEffect(new MobEffectInstance(JJKEffects.PARALYZED.get(), 1*20, 1, false, false, false));
         }
     }
 
     @Override
     public float getCost(LivingEntity owner) {
         if (CurrentTarget != null){
-            ISorcererData ownercap = CurrentTarget.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-            ISorcererData targetcap = CurrentTarget.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
-            return Math.max(3.0F, 3.0F * targetcap.getRealPower() - ownercap.getRealPower());
+            try {
+                ISorcererData ownercap = owner.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+                ISorcererData targetcap = CurrentTarget.getCapability(SorcererDataHandler.INSTANCE).resolve().orElseThrow();
+                return Math.max(3.0F, 3.0F * (targetcap.getRealPower() - ownercap.getRealPower()));
+            } catch (NoSuchElementException e) {
+                return 3.0F;
+            }
         }
         return 3.0F;
     }
@@ -96,6 +100,6 @@ public class ParalyzingGaze extends Ability implements Ability.IToggled {
 
     @Override
     public void onDisabled(LivingEntity owner) {
-        //owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), SoundEvents.BEACON_DEACTIVATE, SoundSource.MASTER, 2.0F, 1.0F);
+        owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), SoundEvents.BEACON_DEACTIVATE, SoundSource.MASTER, 2.0F, 1.0F);
     }
 }

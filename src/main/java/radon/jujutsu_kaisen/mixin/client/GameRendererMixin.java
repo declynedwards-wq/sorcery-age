@@ -30,7 +30,6 @@ public class GameRendererMixin {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/pipeline/RenderTarget;bindWrite(Z)V", shift = At.Shift.BEFORE))
     private void afterRenderPostEffects(CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
-
         if (mc.player != null) {
             Window window = mc.getWindow();
 
