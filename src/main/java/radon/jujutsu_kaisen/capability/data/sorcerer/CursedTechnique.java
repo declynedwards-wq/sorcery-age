@@ -50,7 +50,7 @@ public enum CursedTechnique {
     MYTHICAL_BEAST_AMBER(null,JJKAbilities.MYTHICAL_BEAST_AMBER.get(), JJKAbilities.EMF_BLAST.get(), JJKAbilities.ELECTRIC_BEAM.get() ),
     TECHNIQUELESS(null),
     PROJECTION_SORCERY(JJKAbilities.TIME_CELL_MOON_PALACE.get(), JJKAbilities.PROJECTION_SORCERY.get(), JJKAbilities.TWENTY_FOUR_FRAME_RULE.get(), JJKAbilities.AIR_FRAME.get()),
-    Solo_Forbidden_Area(JJKAbilities.Solo_Forbidden_Area.get());
+    SOLO_FORBIDDEN_AREA(JJKAbilities.SOLO_FORBIDDEN_AREA.get());
     private final @Nullable Ability domain;
     private final Ability[] abilities;
 
